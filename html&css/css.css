@@ -1,0 +1,24 @@
+body{
+    background-color:rgb(255, 0, 179);
+    text-align: left;
+    
+
+}
+h2{
+    font-style: italic;
+    size: 1px;
+    color: rgb(136, 255, 0);
+
+}
+p{
+    font-size: 25px;
+}
+ .blue{
+    color: rgb(0, 0, 255);
+}
+.red{
+    color: rgb(255, 0, 0);
+}
+.green{
+    color: rgb(0, 255, 0);
+} 

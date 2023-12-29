@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+
+    background-color: rgba(104, 83, 13, 0.539);
+    bottom: rgb(2, 17, 95);
+    font-style: italic;
+    background-origin: padding-box;
+}
+h1{
+    color: rgb(210, 18, 34);
+    font-size: 120.px;
+}
+h2{
+    color: rgb(58, 7, 7);
+}
+p{
+    font-size: 1.px;
+    color: rgb(14, 62, 75);
+}

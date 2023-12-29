@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<style type="text/css">
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		
+		h1 {
+			text-align: center;
+		}
+		
+		form {
+			background-color: #fff;
+			border: 1px solid #ccc;
+			padding: 20px;
+			width: 300px;
+			margin: 0 auto;
+			text-align: center;
+			border-radius: 10px;
+			box-shadow: 0 0 10px #ccc;
+		}
+		
+		input[type="text"] {
+			border: 1px solid #ccc;
+			padding: 10px;
+			width: 100%;
+			box-sizing: border-box;
+			border-radius: 5px;
+			margin-bottom: 10px;
+		}
+		
+		input[type="button"] {
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-bottom: 10px;
+		}
+		
+		input[type="button"]:hover {
+			background-color: #3e8e41;
+		}
+		
+		input[type="text"]:focus {
+			outline: none;
+			border: 2px solid #4CAF50;
+		}
+	</style>
+	<script type="text/javascript">
+		function calculate() {
+			var num1 = parseFloat(document.getElementById('num1').value);
+			var num2 = parseFloat(document.getElementById('num2').value);
+			var operator = document.getElementById('operator').value;
+			var result = 0;
+			
+			switch(operator) {
+				case '+':
+					result = num1 + num2;
+					break;
+				case '-':
+					result = num1 - num2;
+					break;
+				case '*':
+					result = num1 * num2;
+					break;
+				case '/':
+					result = num1 / num2;
+					break;
+			}
+			
+			document.getElementById('result').value = result;
+		}
+	</script>
+</head>
+<body>
+	<h1>Calculator</h1>
+	<form>
+		<input type="text" id="num1" placeholder="Enter number 1"><br>
+		<input type="text" id="num2" placeholder="Enter number 2"><br>
+		<select id="operator">
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select><br>
+		<input type="button" value="Calculate" onclick="calculate()"><br>
+		<input type="text" id="result" placeholder="Result" readonly>
+	</form>
+</body>
+</html>

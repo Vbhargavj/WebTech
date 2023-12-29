@@ -1,0 +1,159 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Acme', sans-serif;;
+}
+
+:root{
+  --text-color: #000;
+  --background-color: linear-gradient(to right, #fed7e1, #c3c2ff);
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--background-color);
+}
+
+.container{
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+}
+
+.header {
+  padding: 0 17rem;
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #feefef;
+  margin-top: 2.2rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.header .logo {
+  font-size: 2.2rem;
+  color: var(--text-color);
+  cursor: pointer;
+  letter-spacing: 0.1em;
+}
+
+.logo span{
+  color: rgb(150, 105, 224);
+}
+
+.navbar-list {
+  display: flex;
+  gap: 4.8rem;
+  list-style: none;
+}
+
+.navbar-link:link,
+.navbar-link:visited {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: all 0.4s ease;
+  letter-spacing: 0.1rem;
+}
+
+.navbar-link:hover,
+.navbar-link:active {
+  color: rgb(150, 105, 224);
+}
+
+.mobile-navbar-btn {
+  display: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.mobile-nav-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #212529;
+}
+
+.mobile-nav-icon[name="close"] {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .mobile-navbar-btn {
+    display: block;
+    z-index: 999;
+    color: #212529;
+  }
+
+  .header {
+    position: relative;
+  }
+
+  .header .logo {
+    width: 40%;
+  }
+
+  .navbar {
+    /* display: none; */
+    width: 100%;
+    height: 100vh;
+    background: var(--background-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* to get the tranisition  */
+    transform: translateX(100%);
+    transition: all 0.5s linear;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .navbar-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .active .navbar {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .active .mobile-navbar-btn .mobile-nav-icon[name="close"] {
+    display: block;
+  }
+
+  .active .mobile-navbar-btn .mobile-nav-icon[name="menu"] {
+    display: none;
+  }
+}
+
+/* Below 560px  */
+@media (max-width: 560px) {
+  .header {
+    padding: 0 2.4rem;
+  }
+
+  .header .logo {
+    width: 60%;
+  }
+}

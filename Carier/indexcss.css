@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: solid black 1px;
+}
+
+.wraper
+{
+    width: 100%;
+    height: 100%;
+}
+
+.navi{
+    width: 100%;
+    height: 20px;
+}
