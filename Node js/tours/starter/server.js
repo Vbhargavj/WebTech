@@ -1,7 +1,14 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+process.on('uncaughtException', err => {
+  console.log('uncaughtException');
+  console.log(err, 'Shuting down');
+  server.close(() => {
+    process.exit(1);
+  });
+});
 const app = require('./app');
-
+const Tour = require('./Model/tourModel');
 dotenv.config({ path: './config.env' });
 
 const DB =
@@ -17,19 +24,28 @@ mongoose
   .then(() => {
     console.log('I am connect succesfully');
   });
-const testTour = new Tour({
-  name: 'The bhargav special',
-  price: 888,
-  rating: 4.7
-});
-testTour
-  .save()
-  .then(doc => {
-    console.log(doc);
-  })
-  .catch(err => {
-    console.log(err);
+
+process.on('unhandledRejection', err => {
+  console.log('Unhandeldrejection');
+  console.log(err);
+  server.close(() => {
+    process.exit(1);
   });
+});
+
+// const testTour = new Tour({
+//   name: 'The bhargav special',
+//   price: 888,
+//   rating: 4.7
+// });
+// testTour
+//   .save()
+//   .then(doc => {
+//     console.log(doc);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
