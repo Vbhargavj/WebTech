@@ -1,0 +1,19 @@
+{
+  "name": "todo-backend",
+  "version": "1.0.0",
+  "description": "this is backend of the todo app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "vbj",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1",
+    "nodemon": "^3.1.0",
+    "zod": "^3.22.4"
+  }
+}

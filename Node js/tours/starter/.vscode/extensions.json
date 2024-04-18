@@ -1,0 +1,18 @@
+{
+    "recommendations": [
+        "mgmcdermott.vscode-language-babel",
+        "aaron-bond.better-comments",
+        "formulahendry.code-runner",
+        "naumovs.color-highlight",
+        "mikestead.dotenv",
+        "dbaeumer.vscode-eslint",
+        "solnurkarim.html-to-css-autocompletion",
+        "zignd.html-css-class-completion",
+        "xabikos.javascriptsnippets",
+        "ms-vscode.js-debug-nightly",
+        "akamud.vscode-javascript-snippet-pack",
+        "roerohan.mongo-snippets-for-node-js",
+        "swellaby.node-pack",
+        "christian-kohler.npm-intellisense"
+    ]
+}

@@ -1,27 +1,77 @@
+const path = require('path');
 const express = require('express');
-const app = express();
-
-app.use(express.json());
+const morgan = require('morgan');
 const AppError = require('./utils/appError');
 const globalErrorController = require('./controller/errorConstroller');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const mongoSenitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const hpp = require('hpp');
+const cookieParser = require('cookie-parser');
+const cors=require('cors')
+const app = express();
 
+app.use(cors())
+
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+app.use(helmet());
+
+const limiter = rateLimit({
+  max: 2000,
+  windowMs: 1 * 1,
+  message:
+    'you have make many request so you have make new request after 1 hour'
+});
+// app.use(rateLimit());
+app.use(express.json());
+app.use(cookieParser());
+
+app.use(mongoSenitize());
+// app.use(xss());
+app.use(
+  hpp({
+    whitelist: [
+      'duration',
+      'sort',
+      'ratingQuantity',
+      'ratingsAverage',
+      'difficulty',
+      'price'
+    ]
+  })
+);
+const viewRouter = require('./routes/viewRouter');
 const userRouter = require('./routes/userRouter');
 const tourRouter = require('./routes/tourRouter');
+const reviewRouter = require('./routes/reviewRouter');
 
-// TODO:MAKE USERROUTER AND TOUR ROUTER DONE:
-app.use('/api/v1/tours', tourRouter);
-app.use('/api/v1/user', userRouter);
+app.use(morgan('dev'));
 
-app.all('*', (req, res, next) => {
-  next(new AppError('Pagal hain thode', 404));
+// app.use((req, res, next) => {
+//   console.log(req);
+//   next();
+// });
+app.use((req, res, next) => {
+  console.log(req.cookies);
+  next();
 });
 
+app.use('/', viewRouter);
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/user', userRouter);
+app.use('/api/v1/review', reviewRouter);
+
 app.use(globalErrorController);
-
-// app.route("/api/v1/users").get(getAllUser).post(postUser);
-// app.route("/api/v1/tours/:id").get(deleteUser).patch(patchUser).get(getUser);
-
-// app.route("/api/v1/tours").get(getAllTours).post(postTour);
-// app.route("/api/v1/tours/:id").delete(deleteTour).patch(patchTour).get(getTour);
+app.all('*', (req, res, next) => {
+  next(new AppError('page no found', 404));
+});
 
 module.exports = app;

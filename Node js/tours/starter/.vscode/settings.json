@@ -1,0 +1,8 @@
+{
+  "extensions.autoCheckUpdates": false, 
+  "extensions.autoDisable": true,
+  "extensions.autoEnableRecommendations": true,
+  "extensions.ignoreRecommendations": false,
+  "compile-hero.disable-compile-files-on-did-save-code": true,
+  // "extensions.autoEnableResource": "${workspaceFolder}/.vscode/extensions.json"
+}

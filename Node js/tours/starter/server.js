@@ -3,9 +3,7 @@ const mongoose = require('mongoose');
 process.on('uncaughtException', err => {
   console.log('uncaughtException');
   console.log(err, 'Shuting down');
-  server.close(() => {
-    process.exit(1);
-  });
+  process.exit(1);
 });
 const app = require('./app');
 const Tour = require('./Model/tourModel');
@@ -22,15 +20,14 @@ mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log('I am connect succesfully');
+    console.log('here i am online http://localhost:3000/');
   });
 
 process.on('unhandledRejection', err => {
   console.log('Unhandeldrejection');
   console.log(err);
-  server.close(() => {
-    process.exit(1);
-  });
+
+  process.exit(1);
 });
 
 // const testTour = new Tour({
