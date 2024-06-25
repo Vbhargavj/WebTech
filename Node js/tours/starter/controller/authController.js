@@ -63,12 +63,14 @@ exports.login = catchAsync(async (req, res, next) => {
   }
   const token = signToken(user._id);
 
-  res.status(200).cookie('jwt', token);
+  res.status(200).c
+  ookie('jwt', token);
   res.status(200).json({
     status: 'success',
     token
   });
 });
+
 exports.logOut = (req, res) => {
   res.cookie('jwt', 'i am log out', {
     expires: new Date(Date.now() + 10000),
@@ -113,6 +115,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   res.locals.user = currentUser;
   next();
 });
+
 exports.isLoggedIn = async (req, res, next) => {
   try {
     if (req.cookies.jwt) {
@@ -135,6 +138,7 @@ exports.isLoggedIn = async (req, res, next) => {
   }
   next();
 };
+
 exports.restrictTo = (...role) => {
   return (req, res, next) => {
     if (!role.includes(req.user.role)) {

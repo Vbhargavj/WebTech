@@ -1,0 +1,92 @@
+.movingBorder {
+    width: 60vw;
+    height: 60vh;
+    border: solid 5px skyblue;
+    position: relative;
+
+
+    background: black;
+    animation: changeBorders 5s linear infinite;
+  }
+  
+  @keyframes changeBorders {
+    0%, 25%, 50%, 75%, 100% {
+      border: solid 5px white;
+      border-left: solid 5px skyblue;
+    }
+    25.02%, 50%, 75% {
+      border-bottom: solid 5px skyblue;
+    }
+    50.02%, 75% {
+      border-right: solid 5px skyblue;
+    }
+    75.02%, 100% {
+      border: solid 5px skyblue;
+    }
+  }
+  
+  .movingBorder::after {
+    content: '';
+    width: 5px;
+    background-color: rgb(18, 15, 15);
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: -5px;
+    z-index: 1;
+    animation: movedown 5s linear infinite;
+    animation-fill-mode: forwards;
+    display: inline-block;
+  }
+  
+  @keyframes movedown {
+    0% {
+      height: calc(100% + 10px);
+      width: 5px;
+      bottom: -5px;
+      left: -5px;
+    }
+    25% {
+      height: 5px;
+      width: 5px;
+      bottom: -5px;
+      left: -5px;
+    }
+    25.01% {
+      height: 5px;
+      width: calc(100% + 10px);
+      bottom: -5px;
+      left: -5px;
+    }
+    50% {
+      height: 5px;
+      width: 0;
+      left: 100%;
+      bottom: -5px;
+    }
+    50.01% {
+      height: calc(100% + 10px);
+      width: 5px;
+      left: 100%;
+      bottom: -5px;
+    }
+    75% {
+      height: 0;
+      width: 5px;
+      left: 100%;
+      bottom: 100%;
+    }
+    75.01% {
+      height: 5px;
+      width: calc(100% + 10px);
+      left: 0;
+      bottom: 100%;
+    }
+    100% {
+      height: 5px;
+      width: 0;
+      left: 0;
+      bottom: 100%;
+    }
+  }
+  
